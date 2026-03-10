@@ -1,0 +1,47 @@
+# Default configuration for AI System Stress Testing
+
+# General settings
+seed: 42
+log_level: "INFO"
+experiment_dir: "experiments"
+
+# Data configuration
+data:
+  dataset_type: "synthetic"  # "synthetic" or "iris", "wine", "breast_cancer"
+  task_type: "classification"  # "classification" or "regression"
+  n_samples: 1000
+  n_features: 20
+  n_classes: 2
+  noise: 0.1
+  test_size: 0.2
+  ood_ratio: 0.2
+  batch_size: 32
+
+# Model configuration
+model:
+  type: "simple_mlp"  # "simple_mlp" or "robust_mlp"
+  hidden_dims: [128, 64]
+  dropout_rate: 0.2
+  learning_rate: 0.001
+  weight_decay: 1e-4
+  epochs: 100
+
+# Adversarial attack configuration
+attacks:
+  methods: ["fgsm", "pgd"]
+  epsilon_values: [0.01, 0.05, 0.1, 0.2]
+
+# Uncertainty quantification configuration
+uncertainty:
+  methods: ["mc_dropout", "temperature_scaling"]
+  n_samples: 100
+
+# Out-of-distribution detection configuration
+ood:
+  methods: ["energy", "max_softmax", "entropy"]
+
+# Visualization configuration
+visualization:
+  save_plots: true
+  plot_format: "png"
+  dpi: 300
